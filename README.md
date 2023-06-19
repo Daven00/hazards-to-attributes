@@ -13,7 +13,7 @@ java -jar ./target/hazards-to-attributes-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
 The utility downloads the SIFIS-Home Hazards ontology from [here](https://www.sifis-home.eu/ontology/ontology.rdf) and extracts the individuals of class Hazard.
-Then, for each hazard, it prints on the standard output the XACML code that can be used to populate an XACML request and an XACML policy.
+Then, for each hazard, it prints -on the standard output- the XACML code that can be used to populate an XACML request and an XACML policy.
 
 If an argument is specified, e.g., 
 
@@ -57,14 +57,14 @@ As first information, the utility outputs the version of the SIFIS-Home Hazard o
 Then, what follows `Request:` is the attribute that should be used in an XACML request among the environment attributes.
 
 Finally, what follows `Policy:` is the attribute that can be used in an XACML policy.
-This utility, uses the functions `integer-greater-than` and `integer-one-and-only`, but these can be customized as needed.
+This utility uses the functions `integer-greater-than` and `integer-one-and-only`, but these can be customized as needed.
 
 Note that the value of the attribute is set to `1..10`, which is invalid for an integer.
 This is intended to suggest that the accepted values are in the range [1,10]. 
 It has to be customized when creating either the XACML request or the policy.
 
 ## Attributes types
-Within the ontology, some hazards have a riskScore and some do not.
+Within the ontology, some hazards are characterized by a riskScore and some are not.
 
 The hazards with a riskScore, such as `FireHazard`, are translated to XACML attributes of type `integer`.
 
