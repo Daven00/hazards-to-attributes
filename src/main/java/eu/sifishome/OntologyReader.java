@@ -62,7 +62,8 @@ public class OntologyReader {
             for (OWLNamedIndividual individual : individuals) {
                 if (reasoner.getTypes(individual, false).containsEntity(hazardClass)) {
                     // The individual is of type Hazard
-                    String shortForm = individual.getIRI().getShortForm();
+                    String camelCaseShortForm = individual.getIRI().getShortForm();
+                    String shortForm = convertToKebabCase(camelCaseShortForm);
                     System.out.println();
                     System.out.println("Individual: " + shortForm);
                     System.out.println();
@@ -132,5 +133,15 @@ public class OntologyReader {
         } catch (IOException | OWLOntologyCreationException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String convertToKebabCase(String input) {
+        String regex = "([a-z0-9])([A-Z])";
+        String replacement = "$1-$2";
+        String kebabCaseString = input.replaceAll(regex, replacement).toLowerCase();
+        if (Character.isUpperCase(input.charAt(0))) {
+            kebabCaseString = Character.toLowerCase(kebabCaseString.charAt(0)) + kebabCaseString.substring(1);
+        }
+        return kebabCaseString;
     }
 }
